@@ -1,6 +1,6 @@
 # Krealism + Realism Engine Dataset Template (RunPod)
 
-This package uses the model selections already saved in Lonecat's 80-node workflow and adds Realism Engine as an optional, preloaded LoRA row.
+This package preserves Lonecat's 80-node graph, adds Realism Engine as an optional disabled LoRA row, and fixes Linux model paths and LC Remove Background selectors for a fresh ComfyUI install.
 
 ## Models in the workflow
 
@@ -8,7 +8,8 @@ This package uses the model selections already saved in Lonecat's 80-node workfl
 - Actual diffusion file: `Krealism_V3.1_int8_convrot.safetensors` (about 14.1 GB). Its creator describes Krealism as a photorealism/film-look fine-tune of Krea 2 Turbo and says it needs no extra style LoRA.
 - Text encoder: the workflow's Qwen3-VL 4B Heretic v10 file.
 - VAE: the workflow's `hdrVAE_fp32.safetensors`. The bootstrap fetches the Krea2/Anima HDR VAE weights and saves them under the filename already selected in the workflow.
-- Required `krea2_identity_edit_v2` stays loaded for identity-preserving editing.
+- Required `krea2_identity_edit_v2` stays loaded for identity-preserving editing. The workflow now uses its Linux path (`Krea 2/Utilities/...`).
+- Both LC Remove Background nodes select `⬇ Download: BiRefNet general (MIT)` and `⬇ Download: vitmatte-base-composition-1k (Apache-2.0)`, matching the node's downloadable model entries. The bootstrap also places BiRefNet General and ViTMatte Base under their expected model folders.
 - Realism Engine v3.1 is installed in the LC LoRA Loader at 0.8 strength, initially disabled. Toggle its row on/off in ComfyUI to compare.
 
 Realism Engine is a LoKr adapter, not a conventional low-rank LoRA. The LC LoRA Loader routes it through ComfyUI's generic LoRA application path; whether this specific stack improves this dataset still needs an actual generation comparison. Because Krealism already has a realism look, compare with the extra row off first, then on.

@@ -46,10 +46,10 @@ download 'https://civitai.red/api/download/models/3066989?fileId=2945735' "$M/te
 download 'https://huggingface.co/p3cyc/KREA2/resolve/main/hdrVAEAnimaKrea2QWEN_fp32.safetensors' "$M/vae/hdrVAE_fp32.safetensors" 100000000 public
 download 'https://huggingface.co/conradlocke/krea2-identity-edit/resolve/main/krea2_identity_edit_v2_r128.safetensors?download=true' "$M/loras/Krea 2/Utilities/krea2_identity_edit_v2.safetensors" 1000000 public
 download 'https://civitai.red/api/download/models/3109006?fileId=2988982' "$M/loras/realism_engine_krea2_v3.1.safetensors" 1000000000 civitai
-download 'https://huggingface.co/Comfy-Org/BiRefNet/resolve/main/background_removal/birefnet.safetensors' "$M/background_removal/birefnet.safetensors" 400000000 public
-download 'https://huggingface.co/hustvl/vitmatte-small-composition-1k/resolve/main/model.safetensors' "$M/vitmatte/vitmatte-small-composition-1k/model.safetensors" 50000000 public
-download 'https://huggingface.co/hustvl/vitmatte-small-composition-1k/resolve/main/config.json' "$M/vitmatte/vitmatte-small-composition-1k/config.json" 100 public
-download 'https://huggingface.co/hustvl/vitmatte-small-composition-1k/resolve/main/preprocessor_config.json' "$M/vitmatte/vitmatte-small-composition-1k/preprocessor_config.json" 100 public
+download 'https://huggingface.co/ZhengPeng7/BiRefNet/resolve/main/model.safetensors' "$M/background_removal/BiRefNet-general.safetensors" 200000000 public
+download 'https://huggingface.co/hustvl/vitmatte-base-composition-1k/resolve/main/model.safetensors' "$M/vitmatte/vitmatte-base-composition-1k/model.safetensors" 350000000 public
+download 'https://huggingface.co/hustvl/vitmatte-base-composition-1k/resolve/main/config.json' "$M/vitmatte/vitmatte-base-composition-1k/config.json" 100 public
+download 'https://huggingface.co/hustvl/vitmatte-base-composition-1k/resolve/main/preprocessor_config.json' "$M/vitmatte/vitmatte-base-composition-1k/preprocessor_config.json" 100 public
 echo 'Original workflow models, required identity adapter, optional Realism Engine, and workflow matting assets are installed.'
 
 

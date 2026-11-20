@@ -48,11 +48,11 @@
         }
       },
       "widgets_values": [
-        "Krea 2\\Utilities\\krea2_identity_edit_v2.safetensors",
+        "Krea 2/Utilities/krea2_identity_edit_v2.safetensors",
         1
       ],
       "widgets_values_named": {
-        "lora_name": "Krea 2\\Utilities\\krea2_identity_edit_v2.safetensors",
+        "lora_name": "Krea 2/Utilities/krea2_identity_edit_v2.safetensors",
         "strength_model": 1
       },
       "color": "#233",
@@ -5269,9 +5269,9 @@
         }
       },
       "widgets_values": [
-        "BiRefNet general (MIT)",
+        "⬇ Download: BiRefNet general (MIT)",
         "none",
-        "models/vitmatte (local)",
+        "⬇ Download: vitmatte-base-composition-1k (Apache-2.0)",
         0,
         10,
         10,
@@ -5351,9 +5351,9 @@
         }
       },
       "widgets_values": [
-        "BiRefNet general (MIT)",
+        "⬇ Download: BiRefNet general (MIT)",
         "none",
-        "models/vitmatte (local)",
+        "⬇ Download: vitmatte-base-composition-1k (Apache-2.0)",
         0,
         10,
         10,

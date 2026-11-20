@@ -1,9 +1,8 @@
 # Static validation report
 
-- Source JSON parses and contains 80 nodes / 110 links.
-- Packaged original SHA-256 matches source: `35eb269ce61793891daafeb9a84bc2235b7c1475789900bc133cbf140a65aa57`.
-- Adapted workflow parses and retains all nodes/links; only node 2889 LoRA row values differ, to add Realism Engine disabled at strength 0.8.
-- LCOptimizer node 2888 matches the source model selections exactly: Krea 2 (Turbo) base mode, Krealism V3.1 INT8 ConvRot checkpoint, Heretic v10 text encoder, HDR VAE.
-- ZIP creation and extraction check passed (10 files).
-- No Docker build, GitHub publication, RunPod startup, workflow load, or image generation was run.
-
+- Preserved original workflow: 80 nodes / 110 links; packaged source SHA-256 remains `35eb269ce61793891daafeb9a84bc2235b7c1475789900bc133cbf140a65aa57`.
+- Adapted workflow parses with 80 nodes / 110 links and retains the same node IDs and link list.
+- Adapted fields: node 2889 adds optional Realism Engine at 0.8, disabled; node 171 uses the Linux identity-LoRA path; nodes 2892 and 2893 use the exact LC MaskMaker download selectors for BiRefNet General and ViTMatte Base.
+- Bootstrap now installs BiRefNet General as `models/background_removal/BiRefNet-general.safetensors` (the exact filename recognized by the pinned LC MaskMaker code) and ViTMatte Base in `models/vitmatte/vitmatte-base-composition-1k/` with its weights and config files.
+- Required custom-node repositories include Krea2Edit, LC123, LC MaskMaker (pinned at the workflow-recorded revision), and rgthree. The shell bootstrap is LF-normalized; Dockerfile heredoc closes at `PYCODE`.
+- Static validation only. The latest modified source has not been built, published to GHCR, started on a fresh Pod, or tested through workflow execution/output.
