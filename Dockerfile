@@ -8,7 +8,11 @@ p=Path('/start.sh'); s=p.read_text()
 pattern=re.compile(r'(?m)^[ \t]*(?:exec[ \t]+)?python(?:3(?:\.12)?)?[ \t]+main\.py[^\n]*$')
 matches=list(pattern.finditer(s))
 if len(matches)!=1: raise SystemExit(f'Expected exactly one main.py launch line in /start.sh, found {len(matches)}')
-insert='''# Krea2 setup before ComfyUI\nif [[ "${KREA2_AUTO_SETUP:-1}" == "1" ]]; then\n  /bin/bash /opt/krea2/setup_krea2_krealism.sh\nfi\n\n'''
+insert='''# Krea2 setup before ComfyUI
+if [[ "${KREA2_AUTO_SETUP:-1}" == "1" ]]; then
+  /bin/bash /opt/krea2/setup_krea2_krealism.sh
+fi
+
+'''
 i=matches[0].start(); p.write_text(s[:i]+insert+s[i:])
-PYCODE\r
-\r
+PYCODE
