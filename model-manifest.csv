@@ -1,0 +1,8 @@
+role,filename,destination,source,access,size note
+Diffusion,Krealism_V3.1_int8_convrot.safetensors,models/diffusion_models/Krea 2/Your models/Krealism V3.1/,https://huggingface.co/Lonecatone23/Krealism/resolve/main/Krealism_V3.1_int8_convrot.safetensors,Public HF,14.1 GB; original workflow selection
+Text encoder,qwen3VL-4B - Instruct-Heretic_v10.safetensors,models/text_encoders/Qwen 3/,https://civitai.red/api/download/models/3066989?fileId=2945735,CIVITAI_TOKEN,Original workflow selection
+VAE,hdrVAE_fp32.safetensors,models/vae/,https://huggingface.co/p3cyc/KREA2/resolve/main/hdrVAEAnimaKrea2QWEN_fp32.safetensors,Public HF,508 MB; saved under workflow filename
+Identity adapter,krea2_identity_edit_v2.safetensors,models/loras/Krea 2/Utilities/,https://huggingface.co/conradlocke/krea2-identity-edit/resolve/main/krea2_identity_edit_v2_r128.safetensors?download=true,Public HF,Required by workflow
+Optional style adapter,realism_engine_krea2_v3.1.safetensors,models/loras/,https://civitai.red/api/download/models/3109006?fileId=2988982,CIVITAI_TOKEN,1.56 GB LoKr; disabled initially
+Background removal,birefnet.safetensors,models/background_removal/,https://huggingface.co/Comfy-Org/BiRefNet/resolve/main/background_removal/birefnet.safetensors,Public HF,LCRemBG dependency
+Matting,vitmatte-small-composition-1k,models/vitmatte/vitmatte-small-composition-1k/,https://huggingface.co/hustvl/vitmatte-small-composition-1k,Public HF,Weights and configs
