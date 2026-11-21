@@ -26,4 +26,4 @@ The Heretic text encoder does not guarantee that the whole Krea 2 system will ge
 6. Run one prompt with Realism Engine off, then toggle its row on and compare using the same seed and inputs.
 7. Download outputs locally before terminating the Pod.
 
-The LC123 custom node is installed from its current upstream branch because the export records multiple historical revisions; Krea2Edit and MaskMaker are pinned to revisions saved in the source workflow. Static package validation only: Docker build, GHCR push, Pod startup, workflow loading, and generation have not been run.
+The LC123 custom node and rgthree are installed from their upstream branches; Krea2Edit and MaskMaker are pinned to revisions saved in the source workflow. Static package validation only: Docker build, GHCR push, Pod startup, workflow loading, and generation have not been run. The setup validates model sizes and SafeTensors headers both after download and before reusing cached files. For the detailed audit and known blocker from the earlier published image, see `validation-report.md`.

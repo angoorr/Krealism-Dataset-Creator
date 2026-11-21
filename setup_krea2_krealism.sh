@@ -32,7 +32,7 @@ if kind=='civitai': print('get'); print('data-urlencode = '+json.dumps('token='+
 
 PY
 }
-download(){ local url="$1" dest="$2" minimum="$3" auth="$4" tmp="${2}.part"; mkdir -p "$(dirname "$dest")"; if [[ -s "$dest" ]]; then echo "Already present: $(basename "$dest")"; return; fi; rm -f "$tmp"; echo "Downloading $(basename "$dest")"; make_curl_config "$url" "$tmp" "$auth"; curl --config "$TEMP_CFG"; rm -f "$TEMP_CFG"; TEMP_CFG=""; [[ -s "$tmp" ]] || { echo "Empty download: $dest"; exit 4; }; local bytes; bytes=$(stat -c %s "$tmp"); (( bytes >= minimum )) || { echo "File too small ($bytes): $dest"; exit 4; }; if [[ "$dest" == *.safetensors ]]; then "$PY" - "$tmp" <<'PY'
+validate_file(){ local file="$1" minimum="$2" bytes; [[ -s "$file" ]] || return 1; bytes=$(stat -c %s "$file") || return 1; (( bytes >= minimum )) || return 1; if [[ "$file" == *.safetensors ]]; then "$PY" - "$file" <<'PY'
 import json,struct,sys
 with open(sys.argv[1],'rb') as f:
  n=struct.unpack('<Q',f.read(8))[0]
@@ -40,14 +40,16 @@ with open(sys.argv[1],'rb') as f:
  h=json.loads(f.read(n))
  if not isinstance(h,dict) or not h: raise SystemExit('invalid safetensors header')
 PY
-fi; mv "$tmp" "$dest"; echo "Verified $(basename "$dest") ($bytes bytes)"; }
+fi
+}
+download(){ local url="$1" dest="$2" minimum="$3" auth="$4" tmp="${2}.part"; mkdir -p "$(dirname "$dest")"; if [[ -e "$dest" ]]; then if validate_file "$dest" "$minimum" >/dev/null 2>&1; then echo "Verified existing: $(basename "$dest")"; return; fi; echo "Existing file failed validation; replacing: $(basename "$dest")"; rm -f "$dest"; fi; rm -f "$tmp"; echo "Downloading $(basename "$dest")"; make_curl_config "$url" "$tmp" "$auth"; curl --config "$TEMP_CFG"; rm -f "$TEMP_CFG"; TEMP_CFG=""; validate_file "$tmp" "$minimum" || { echo "Downloaded file failed validation: $dest"; exit 4; }; local bytes; bytes=$(stat -c %s "$tmp"); mv "$tmp" "$dest"; echo "Verified $(basename "$dest") ($bytes bytes)"; }
 download 'https://huggingface.co/Lonecatone23/Krealism/resolve/main/Krealism_V3.1_int8_convrot.safetensors' "$M/diffusion_models/Krea 2/Your models/Krealism V3.1/Krealism_V3.1_int8_convrot.safetensors" 10000000000 public
 download 'https://civitai.red/api/download/models/3066989?fileId=2945735' "$M/text_encoders/Qwen 3/qwen3VL-4B - Instruct-Heretic_v10.safetensors" 1000000000 civitai
 download 'https://huggingface.co/p3cyc/KREA2/resolve/main/hdrVAEAnimaKrea2QWEN_fp32.safetensors' "$M/vae/hdrVAE_fp32.safetensors" 100000000 public
 download 'https://huggingface.co/conradlocke/krea2-identity-edit/resolve/main/krea2_identity_edit_v2_r128.safetensors?download=true' "$M/loras/Krea 2/Utilities/krea2_identity_edit_v2.safetensors" 1000000 public
 download 'https://civitai.red/api/download/models/3109006?fileId=2988982' "$M/loras/realism_engine_krea2_v3.1.safetensors" 1000000000 civitai
 download 'https://huggingface.co/ZhengPeng7/BiRefNet/resolve/main/model.safetensors' "$M/background_removal/BiRefNet-general.safetensors" 200000000 public
-download 'https://huggingface.co/hustvl/vitmatte-base-composition-1k/resolve/main/model.safetensors' "$M/vitmatte/vitmatte-base-composition-1k/model.safetensors" 350000000 public
+download 'https://huggingface.co/hustvl/vitmatte-base-composition-1k/resolve/main/pytorch_model.bin' "$M/vitmatte/vitmatte-base-composition-1k/pytorch_model.bin" 350000000 public
 download 'https://huggingface.co/hustvl/vitmatte-base-composition-1k/resolve/main/config.json' "$M/vitmatte/vitmatte-base-composition-1k/config.json" 100 public
 download 'https://huggingface.co/hustvl/vitmatte-base-composition-1k/resolve/main/preprocessor_config.json' "$M/vitmatte/vitmatte-base-composition-1k/preprocessor_config.json" 100 public
 echo 'Original workflow models, required identity adapter, optional Realism Engine, and workflow matting assets are installed.'
