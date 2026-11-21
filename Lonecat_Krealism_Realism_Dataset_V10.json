@@ -5269,9 +5269,9 @@
         }
       },
       "widgets_values": [
-        "⬇ Download: BiRefNet general (MIT)",
+      "BiRefNet general (MIT)",
         "none",
-        "⬇ Download: vitmatte-base-composition-1k (Apache-2.0)",
+      "vitmatte-base-composition-1k",
         0,
         10,
         10,
@@ -5351,9 +5351,9 @@
         }
       },
       "widgets_values": [
-        "⬇ Download: BiRefNet general (MIT)",
+      "BiRefNet general (MIT)",
         "none",
-        "⬇ Download: vitmatte-base-composition-1k (Apache-2.0)",
+      "vitmatte-base-composition-1k",
         0,
         10,
         10,

@@ -15,7 +15,7 @@ N="$COMFY/custom_nodes"; M="$COMFY/models"
 
 [[ -d "$N" && -x "$PY" ]] || { echo "ComfyUI not ready at $COMFY"; exit 2; }
 install_node(){ local repo="$1" dir="$2" ref="${3:-}"; if [[ -d "$dir/.git" ]]; then git -C "$dir" fetch --depth 1 origin; git -C "$dir" reset --hard FETCH_HEAD; elif [[ ! -e "$dir" ]]; then git clone --depth 1 "$repo" "$dir"; else echo "Node path exists but is not a Git clone: $dir"; exit 3; fi; if [[ -n "$ref" ]]; then git -C "$dir" fetch --depth 1 origin "$ref"; git -C "$dir" checkout --detach FETCH_HEAD; fi; [[ -f "$dir/__init__.py" ]] || { echo "Invalid node repo $dir"; exit 3; }; if [[ -f "$dir/requirements.txt" ]]; then "$PY" -m pip install --disable-pip-version-check -r "$dir/requirements.txt"; fi; if [[ -f "$dir/install.py" ]]; then "$PY" "$dir/install.py"; fi; }
-install_node https://github.com/lbouaraba/comfyui-krea2edit "$N/comfyui-krea2edit" 7e68e90983b25e64dd02ac5d0c10593ea72a4cde
+install_node https://github.com/lbouaraba/comfyui-krea2edit "$N/comfyui-krea2edit" v2.0.0
 install_node https://github.com/lonecatone23/ComfyUI_LC123_nodes "$N/ComfyUI_LC123_nodes"
 install_node https://github.com/lonecatone23/ComfyUI_LC_MaskMaker_nodes "$N/ComfyUI_LC_MaskMaker_nodes" 7641e153d15b5da332888db1d460fbf5466a7626
 install_node https://github.com/rgthree/rgthree-comfy "$N/rgthree-comfy"
